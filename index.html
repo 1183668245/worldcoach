@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Coach</title>
+  <link rel="icon" type="image/webp" href="./素材/logo.webp" />
+  <link rel="apple-touch-icon" href="./素材/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-logo" src="./素材/logo.webp" alt="World Coach Logo" />
+        <div>
+          <div class="brand-title">World Coach</div>
+          <div class="brand-sub">世界杯主教练席位竞聘</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#hero">首页</a>
+        <a href="#seats">席位区</a>
+        <button id="openBlindBoxModalBtn" type="button" class="nav-modal-btn">世界杯战术包</button>
+        <button id="openMyModalBtn" type="button" class="nav-modal-btn">我的</button>
+        <a href="#rules">赛事规则</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button id="contractInfoBtn" class="ghost-btn">合约信息</button>
+        <button id="connectWalletBtn" class="primary-btn">连接钱包</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-content-wrapper">
+          <div class="hero-copy">
+            <h1 class="hero-title-en">World<br/><span class="text-primary">Coach</span></h1>
+            <h2 class="hero-title-cn text-primary">世界杯主教练席位竞聘</h2>
+            <p class="hero-desc">100 个世界杯国家队主教练席位，竞聘任命、战术补强、参与赛事分奖</p>
+            
+            <div class="hero-features">
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-pizza"></div>
+                <span class="feature-text">席位竞聘</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-dice"></div>
+                <span class="feature-text">战术补强</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-coins"></div>
+                <span class="feature-text">赛事分奖</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-chart"></div>
+                <span class="feature-text">执教策略</span>
+              </div>
+            </div>
+            
+            <div class="hero-banner">
+              竞聘任命，稳住帅位，补强战术，参与分奖！
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="./素材/背景.webp" alt="World Coach 首页背景" />
+          </div>
+        </div>
+
+        <div class="hero-stats hero-metrics">
+          <div class="hero-metric-card">
+            <div class="hero-metric-copy">
+              <span>赛事奖金池（BNB）</span>
+              <strong id="heroBnbPool">--</strong>
+              <em>链上状态实时同步</em>
+            </div>
+          </div>
+          <div class="hero-metric-card">
+            <div class="hero-metric-copy">
+              <span>战术包奖池</span>
+              <strong id="heroBlindBoxPool">--</strong>
+              <em>配方沉淀持续汇聚</em>
+            </div>
+          </div>
+          <div class="hero-metric-card">
+            <div class="hero-metric-copy">
+              <span>主教练席位任命进度</span>
+              <strong id="heroOccupiedSeats">-- / 100</strong>
+              <em>百席争夺持续推进</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section hero-banners-section">
+        <div class="hero-banners-grid">
+          <img src="./素材/玩法.webp" alt="玩法介绍" class="hero-banner-img" />
+          <img src="./素材/dfb96695-3d0d-41f1-a33e-d9cabcb9702b.webp" alt="活动介绍" class="hero-banner-img" />
+        </div>
+      </section>
+
+      <section id="seats" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">席位区</p>
+            <h2>100 个主教练席位</h2>
+          </div>
+          <div class="seat-filters">
+            <button class="chip active" data-filter="all">全部席位</button>
+            <button class="chip" data-filter="core">冠军名帅</button>
+            <button class="chip" data-filter="mid">传统强队</button>
+            <button class="chip" data-filter="outer">黑马新军</button>
+            <button class="chip" data-filter="available">仅看可竞聘</button>
+            <button class="chip" data-filter="mine">仅看我的</button>
+          </div>
+        </div>
+
+        <div class="seats-summary card soft-card">
+          <div><span>赛事通证</span><strong id="tokenMetaText">--</strong></div>
+          <div><span>当前筛选</span><strong id="seatFilterText">全部主教练席位</strong></div>
+          <div><span>最新可读状态</span><strong id="lastUpdatedText">--</strong></div>
+        </div>
+
+        <div class="seats-cards card">
+          <div id="seatsGrid" class="seats-card-grid"></div>
+        </div>
+      </section>
+
+      <section id="recent" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">任命记录</p>
+            <h2>最新竞聘记录</h2>
+          </div>
+          <span class="section-tip">每一次主教练任命，都会在链上留下记录</span>
+        </div>
+        <div id="recentRecords" class="records-list card"></div>
+      </section>
+
+      <section id="rules" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">规则摘要</p>
+            <h2>赛事规则</h2>
+          </div>
+          <button id="openRulesBtn" class="ghost-btn">查看完整说明</button>
+        </div>
+
+        <div class="rules-grid">
+          <article class="card soft-card">
+            <h3>竞聘席位</h3>
+            <p>主教练席位被任命后进入 15 分钟保护期，保护期结束后才可再次竞聘。</p>
+          </article>
+          <article class="card soft-card">
+            <h3>卸任主教练</h3>
+            <p>主动卸任 ≤60 分钟返还 80%，超过 60 分钟返还 95%。</p>
+          </article>
+          <article class="card soft-card">
+            <h3>世界杯战术包</h3>
+            <p>每次 10 万代币，部分进入战术包奖池，奖励进入你的战术背包。</p>
+          </article>
+          <article class="card soft-card">
+            <h3>赛事分奖</h3>
+            <p>满足席位、持仓与奖池条件后，可参与赛事奖金分配并领取奖励。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer card">
+      <div class="footer-copy">
+        <strong>免责说明</strong>
+        <p>本页面为链上交互界面，所有结果以链上合约最终状态为准。数字资产存在波动与操作风险，请谨慎参与。</p>
+      </div>
+      <div class="footer-links">
+        <button id="footerContractBtn" class="text-btn">合约信息</button>
+        <button id="refreshBtn" class="text-btn">立即刷新</button>
+      </div>
+    </footer>
+  </div>
+
+  <div id="statusToast" class="status-toast hidden"></div>
+
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-card card">
+      <div class="spinner"></div>
+      <strong id="loadingTitle">处理中</strong>
+      <p id="loadingText">请在钱包中确认，并等待链上返回结果。</p>
+    </div>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div class="modal card">
+      <div class="modal-head">
+        <h3 id="modalTitle">详情</h3>
+        <button id="closeModalBtn" class="icon-btn">×</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <aside id="drawer" class="drawer">
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">我的战术背包</p>
+        <h3>奖励 / 竞聘权 / 临场战术 / 执教履历</h3>
+      </div>
+      <button id="closeDrawerBtn" class="icon-btn">×</button>
+    </div>
+    <div class="drawer-tabs">
+      <button class="drawer-tab active" data-tab="rewards">奖励</button>
+      <button class="drawer-tab" data-tab="discounts">竞聘权</button>
+      <button class="drawer-tab" data-tab="buffs">临场战术</button>
+      <button class="drawer-tab" data-tab="marks">执教履历</button>
+    </div>
+    <div id="drawerContent" class="drawer-content"></div>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+  <script src="./coach-meta.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
