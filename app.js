@@ -2,11 +2,11 @@
   const { ethers } = window;
 
   const CONFIG = {
-    chainIdHex: "0x61",
-    chainId: 97,
-    chainName: "BNB Smart Chain Testnet",
-    rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545",
-    explorer: "https://testnet.bscscan.com",
+    chainIdHex: "0x38",
+    chainId: 56,
+    chainName: "BNB Smart Chain",
+    rpcUrl: "https://bsc-dataseed.binance.org/",
+    explorer: "https://bscscan.com",
     factoryAddress: "0xAf8503cA67d7E856e201E86A986c433FE3cBaAF8",
     vaultAddress: "0x685E5A72B76947aaA15E51BE813203b1EdDA09CA",
     tokenAddress: "0x05504d9d8bd83acb3f22795cc1a0465e77a27777",
